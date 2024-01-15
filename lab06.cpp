@@ -12,26 +12,26 @@ using namespace std; //para evitar tener que escribir std:: antes de cada funci�
 void generarCamino(int **matriz, int filas, int columnas, int x, int y);
 //esta funcion generara un laberinto y retorna un puntero a un puntero de enteros, quiero usar para representar una matriz bidimensional
 int** generarlaberinto(int filas, int columnas);
-//función que resuelve el laberinto utilizando el algoritmo DFS. Retorna un booleano (true o false) que indica si se encontró un camino
+//función que resuelve el laberinto utilizando el algoritmo BFS. Retorna un booleano (true o false) que indica si se encontró un camino
 bool resolverLaberintoDFS(int **matriz, int filas, int columnas, int x, int y, vector<pair<int, int>>& camino);
 
 //PARTE 1: GENERACION DEL LABERINTO
 
-// Función para generar caminos en el laberinto y utilizo en la funcion generarlaberinto()
+//funcion para generar caminos en el laberinto y utilizo en la funcion generarlaberinto()
 void generarCamino(int **matriz, int filas, int columnas, int x, int y) {
     //direcciones posibles para expandir el camino: arriba, abajo, izquierda y derecha. Las direcciones se representan como desplazamientos en x e y
-    int dx[4] = {0, 0, -2, 2}; //desplazar en x para cada dirección
-    int dy[4] = {-2, 2, 0, 0}; //desplazar en y para cada dirección
+    int dx[4] = {0, 0, -2, 2}; //desplazar en x para cada direccion
+    int dy[4] = {-2, 2, 0, 0}; //desplazar en y para cada direccion
     vector<int> direcciones = {0, 1, 2, 3}; //lista de indices de direcciones para explorar
     random_shuffle(direcciones.begin(), direcciones.end()); // mezclar al vector direcciones con la funcion random_shuflle,asegurando asi que el camino generado sea aleatorio.
 
-    //el bucle for explora cada dirección. Si la nueva posición (nx, ny) es válida (dentro de los límites del laberinto y actualmente es una pared), la función se llama a sí misma recursivamente desde esa nueva posición, creando un camino.
+    //el bucle for explora cada direccion. Si la nueva posicion (nx, ny) es valida (dentro de los limites del laberinto y actualmente es una pared), la funcion se llama a si misma recursivamente desde esa nueva posicion, creando un camino.
 
     for (int i : direcciones) {
-        //valcula las nuevas coordenadas después de moverse en la dirección i.
+        //calcula las nuevas coordenadas despues de moverse en la direccion i.
         int nx = x + dx[i], ny = y + dy[i];
 
-        //verifica si las nuevas coordenadas están dentro de los limites del laberinto y si la celda esta sin visitar
+        //verifica si las nuevas coordenadas estan dentro de los limites del laberinto y si la celda esta sin visitar
         if (ny > 0 && ny < filas-1 && nx > 0 && nx < columnas-1 && matriz[ny][nx] == 1) {
             //marca la celda actual y la celda intermedia como parte del camino, cambiando su valor de 1 (pared) a 0 (camino)    
             matriz[ny][nx] = 0;
@@ -56,26 +56,26 @@ int** generarlaberinto(int filas, int columnas) {
         }
     }
     //inicializar el generador de números aleatorios
-    srand(time(NULL)); //inicia lo purete
+    srand(time(NULL));
     //seleccionar una posición inicial aleatoria para el camino en el laberinto. inicioX - inicioY, segura que la posición inicial sea impar, para evitar que los caminos se corten entre si
     int inicioX = 2 * (rand() % ((columnas - 1) / 2)) + 1;
     int inicioY = 2 * (rand() % ((filas - 1) / 2)) + 1;
     //marco la posicion inicial como espacio libre (0 representa espacio libre)
     matriz[inicioY][inicioX] = 0;
-    //invoco a la función 'generarCamino' para generar caminos desde la posición inicial
+    //invoco a la funcion 'generarCamino' para generar caminos desde la posicion inicial
     generarCamino(matriz, filas, columnas, inicioX, inicioY); //modifica la matriz para crear un laberinto
 
     //crear un entrada y salida en el laberinto
     matriz[0][inicioX] = 0; //entrada en la fila superior
     matriz[filas - 1][inicioX] = 0; //salida en la fila inferior
 
-    return matriz; // Retornar la matriz generada
+    return matriz; //retornar la matriz generada
 }
 
 
 //PARTE 2: SOLUCION DEL LABERINTO
 
-//funcion para verificar si una posición (x, y) esta dentro del laberinto y no es una pared. Utilizo dentro de la funcion 'resolverLaberintoBFS'
+//funcion para verificar si una posicion (x, y) esta dentro del laberinto y no es una pared. Utilizo dentro de la funcion 'resolverLaberintoBFS'
 bool esValido(int x, int y, int filas, int columnas) {
     //retorna verdadero si la posicion esta dentro de los limites del laberinto
     return x >= 0 && x < columnas && y >= 0 && y < filas;
@@ -186,7 +186,7 @@ int main() {
         }
     } else {
         //si no se encontro un camino, imprimir un mensaje
-        cout << "No se encontró camino" << endl;
+        cout << "No se encontro camino" << endl;
     }
 
     //invocar a imprimirLaberinto() para mostrar el laberinto y el camino de solucion si lo hubiere
