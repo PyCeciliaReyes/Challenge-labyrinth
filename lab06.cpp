@@ -1,11 +1,11 @@
-// Incluyendo bibliotecas para funcionalidades:
-#include <iostream> // Para operaciones de entrada y salida. como cout, cin, endl.
-#include <ctime> //Para funciones relacionadas con el tiempo y la generación de números aleatorios.
-#include <vector> //Para usar contenedores que facilitan el manejo de colecciones de datos. Los vectores son contenedores de datos dinámicos, similares a las listas en Python, pero con más funcionalidades
-#include <algorithm> //Para operaciones como random_shuffle
-#include <queue> // Para usar la estructura de datos cola, útil en el algoritmos de búsqueda
+//incluyendo bibliotecas para funcionalidades:
+#include <iostream> //para operaciones de entrada y salida. como cout, cin, endl.
+#include <ctime> //para funciones relacionadas con el tiempo y la generacion de nros aleatorios
+#include <vector> //para usar contenedores que facilitan el manejo de colecciones de datos. Los vectores son contenedores de datos dinamicos, similares a las listas en Python, pero con mas funcionalidades
+#include <algorithm> //para operaciones como random_shuffle
+#include <queue> //para usar la estructura de datos cola, util en el algoritmos de busqueda
 
-using namespace std; //para evitar tener que escribir std:: antes de cada función estándar
+using namespace std; //para evitar tener que escribir std:: antes de cada funcion estandar
 
 //Declaracion de 3 funciones:
 //esta funcion generará un camino dentro del laberinto
